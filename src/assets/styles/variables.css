@@ -1,0 +1,108 @@
+/**
+ * TravelApp 日式極簡主題 CSS 變數
+ * 遵循專案憲法：日式極簡設計原則
+ */
+
+:root {
+  /* ========== 基礎色彩 ========== */
+  --color-background: #FAFAFA;
+  --color-surface: #FFFFFF;
+  --color-text-primary: #1A1A1A;
+  --color-text-secondary: #666666;
+  --color-text-muted: #999999;
+  --color-border: #E5E5E5;
+  --color-divider: #F0F0F0;
+
+  /* ========== 卡片類型強調色 ========== */
+  /* 活動卡片 - 藍色系 */
+  --color-activity: #4A90D9;
+  --color-activity-light: #6BA3E0;
+  --color-activity-bg: #EBF4FC;
+  --color-activity-border: #BDD7F2;
+
+  /* 餐廳卡片 - 橘色系 */
+  --color-restaurant: #E67E22;
+  --color-restaurant-light: #EB9950;
+  --color-restaurant-bg: #FDF2E6;
+  --color-restaurant-border: #F5D4B3;
+
+  /* 交通卡片 - 灰色系 */
+  --color-transport: #7F8C8D;
+  --color-transport-light: #95A5A6;
+  --color-transport-bg: #F4F4F4;
+  --color-transport-border: #D5D5D5;
+
+  /* ========== 功能色彩 ========== */
+  --color-success: #27AE60;
+  --color-warning: #F39C12;
+  --color-error: #E74C3C;
+  --color-info: #3498DB;
+
+  /* ========== 圓角 ========== */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* ========== 陰影 ========== */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+  --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow-card-hover: 0 4px 16px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+
+  /* ========== 間距 ========== */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 48px;
+
+  /* ========== 動畫 ========== */
+  --transition-fast: 150ms ease;
+  --transition-normal: 300ms ease;
+  --transition-slow: 500ms ease;
+  --transition-expand: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ========== 觸控目標 ========== */
+  --touch-target-min: 44px;
+
+  /* ========== 字體 ========== */
+  --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Sans',
+                 'Hiragino Kaku Gothic ProN', 'Yu Gothic', 'Meiryo', sans-serif;
+
+  /* 字體大小 */
+  --font-size-xs: 12px;
+  --font-size-sm: 14px;
+  --font-size-md: 16px;
+  --font-size-lg: 18px;
+  --font-size-xl: 20px;
+  --font-size-2xl: 24px;
+  --font-size-3xl: 30px;
+
+  /* 字重 */
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* 行高 */
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
+
+  /* ========== 寬度約束 ========== */
+  --max-width-mobile: 428px;
+  --max-width-content: 600px;
+
+  /* ========== Z-index 層級 ========== */
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-fixed: 300;
+  --z-modal-backdrop: 400;
+  --z-modal: 500;
+  --z-tooltip: 600;
+}
