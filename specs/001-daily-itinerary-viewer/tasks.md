@@ -155,7 +155,7 @@
 - [x] T041 更新 specs/001-daily-itinerary-viewer/plan.md 為實際內容
 - [x] T042 驗證離線功能（Service Worker 正確快取資料）
 - [x] T043 執行 npm run build 確認無錯誤
-- [ ] T044 提交所有變更並推送
+- [x] T044 提交所有變更並推送
 
 ---
 

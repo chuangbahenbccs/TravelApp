@@ -5,6 +5,7 @@ import { resolve } from 'path';
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: '/TravelApp/',
   plugins: [
     vue(),
     VitePWA({
@@ -18,16 +19,16 @@ export default defineConfig({
         background_color: '#FAFAFA',
         display: 'standalone',
         orientation: 'portrait',
-        start_url: '/',
+        start_url: '/TravelApp/',
         icons: [
           {
-            src: '/icon.svg',
+            src: '/TravelApp/icon.svg',
             sizes: 'any',
             type: 'image/svg+xml',
             purpose: 'any',
           },
           {
-            src: '/icon.svg',
+            src: '/TravelApp/icon.svg',
             sizes: 'any',
             type: 'image/svg+xml',
             purpose: 'maskable',
