@@ -31,7 +31,9 @@ jobs:
           node-version: '20'
 
       - name: Install dependencies
-        run: npm install
+        run: |
+          npm cache clean --force
+          npm install --prefer-online
 
       - name: Build
         run: npm run build
