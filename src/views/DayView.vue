@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted } from 'vue';
+import { onMounted, watch } from 'vue';
 import { useRouter } from 'vue-router';
 import { useDayPlan } from '@/composables/useDayPlan';
 import { seedDatabase } from '@/database/seed';
@@ -42,6 +42,16 @@ onMounted(async () => {
     loadDayPlan(props.dayNumber);
   }
 });
+
+// 監聽路由參數變化，當日期切換時重新載入資料
+watch(
+  () => props.dayNumber,
+  (newDayNumber: number) => {
+    if (newDayNumber !== currentDayNumber.value) {
+      loadDayPlan(newDayNumber);
+    }
+  }
+);
 </script>
 
 <template>
