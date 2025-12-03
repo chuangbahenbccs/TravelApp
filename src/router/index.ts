@@ -14,6 +14,27 @@ const routes: RouteRecordRaw[] = [
       dayNumber: Number(route.params.dayNumber),
     }),
   },
+  {
+    path: '/nearby/:lat/:lng',
+    name: 'NearbyView',
+    component: () => import('@/views/NearbyView.vue'),
+    props: (route) => ({
+      lat: Number(route.params.lat),
+      lng: Number(route.params.lng),
+      locationName: route.query.name as string | undefined,
+    }),
+  },
+  {
+    path: '/nearby/:lat/:lng/:placeId',
+    name: 'NearbyViewWithDetail',
+    component: () => import('@/views/NearbyView.vue'),
+    props: (route) => ({
+      lat: Number(route.params.lat),
+      lng: Number(route.params.lng),
+      placeId: route.params.placeId as string,
+      locationName: route.query.name as string | undefined,
+    }),
+  },
 ];
 
 const router = createRouter({

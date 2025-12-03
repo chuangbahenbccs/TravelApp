@@ -6,6 +6,19 @@ import { resolve } from 'path';
 // https://vite.dev/config/
 export default defineConfig({
   base: '/TravelApp/',
+  server: {
+    proxy: {
+      // Foursquare Places API 代理（解決 CORS 問題）
+      '/api/foursquare': {
+        target: 'https://places-api.foursquare.com',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api\/foursquare/, ''),
+        headers: {
+          'Origin': 'https://places-api.foursquare.com',
+        },
+      },
+    },
+  },
   plugins: [
     vue(),
     VitePWA({

@@ -1,6 +1,7 @@
 import Dexie, { type Table } from 'dexie';
 import type { Trip } from '@/types/trip';
 import type { DayPlan } from '@/types/day';
+import type { RecommendationCache } from '@/types/recommendation';
 
 /**
  * TravelApp IndexedDB 資料庫
@@ -15,6 +16,7 @@ export interface DayPlanRecord extends DayPlan {
 export class TravelAppDatabase extends Dexie {
   trips!: Table<Trip, string>;
   dayPlans!: Table<DayPlanRecord, [string, number]>;
+  recommendationCaches!: Table<RecommendationCache, number>;
 
   constructor() {
     super('TravelAppDB');
@@ -24,6 +26,13 @@ export class TravelAppDatabase extends Dexie {
       trips: 'tripId',
       // [tripId, dayNumber] 複合主鍵，tripId 作為索引
       dayPlans: '[tripId+dayNumber], tripId',
+    });
+
+    // v2: 新增推薦快取資料表
+    this.version(2).stores({
+      trips: 'tripId',
+      dayPlans: '[tripId+dayNumber], tripId',
+      recommendationCaches: '++id, centerKey, cachedAt, expiresAt',
     });
   }
 }

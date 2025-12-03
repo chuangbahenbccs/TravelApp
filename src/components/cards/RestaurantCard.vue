@@ -1,8 +1,10 @@
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
+import { useRouter } from 'vue-router';
 import type { RestaurantCard as RestaurantCardType } from '@/types/card';
 import BaseCard from './BaseCard.vue';
 import NavigateButton from '@/components/navigation/NavigateButton.vue';
+import { createFoursquareProvider } from '@/services/places/FoursquarePlacesProvider';
 
 interface Props {
   card: RestaurantCardType;
@@ -17,9 +19,37 @@ const emit = defineEmits<{
   toggle: [];
 }>();
 
+const router = useRouter();
+const isLoadingNearby = ref(false);
+
 const locationName = computed(() => props.card.location?.name || '');
+const locationAddress = computed(() => props.card.location?.address || '');
 const details = computed(() => props.card.details);
 const hasBackup = computed(() => props.card.backup && props.card.backup.length > 0);
+
+async function handleNearbyClick(event: Event) {
+  event.stopPropagation();
+  if (isLoadingNearby.value) return;
+
+  const query = locationName.value || locationAddress.value;
+  if (!query) return;
+
+  isLoadingNearby.value = true;
+  try {
+    const provider = createFoursquareProvider();
+    const result = await provider.geocode({ query });
+    if (result) {
+      router.push({
+        path: `/nearby/${result.coordinates.latitude}/${result.coordinates.longitude}`,
+        query: { name: locationName.value },
+      });
+    }
+  } catch (error) {
+    console.error('Geocode failed:', error);
+  } finally {
+    isLoadingNearby.value = false;
+  }
+}
 </script>
 
 <template>
@@ -86,12 +116,77 @@ const hasBackup = computed(() => props.card.backup && props.card.backup.length >
     </template>
 
     <template #actions>
+      <button
+        v-if="locationName"
+        type="button"
+        class="nearby-btn"
+        :disabled="isLoadingNearby"
+        @click="handleNearbyClick"
+      >
+        <span v-if="isLoadingNearby" class="loading-spinner"></span>
+        <span v-else class="nearby-icon">📍</span>
+        <span class="nearby-text">附近推薦</span>
+      </button>
       <NavigateButton v-if="card.navigationUrl" :url="card.navigationUrl" />
     </template>
   </BaseCard>
 </template>
 
 <style scoped>
+/* 附近推薦按鈕 */
+.nearby-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  margin-right: var(--spacing-sm);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-restaurant);
+  background: var(--color-restaurant-bg);
+  border: 1px solid var(--color-restaurant-border);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  min-height: var(--touch-target-min);
+}
+
+.nearby-btn:hover:not(:disabled) {
+  background: var(--color-restaurant-light);
+  color: var(--color-surface);
+  border-color: var(--color-restaurant-light);
+}
+
+.nearby-btn:active:not(:disabled) {
+  transform: scale(0.96);
+}
+
+.nearby-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.nearby-icon {
+  font-size: var(--font-size-sm);
+}
+
+.nearby-text {
+  white-space: nowrap;
+}
+
+.loading-spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--color-restaurant-border);
+  border-top-color: var(--color-restaurant);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
 .restaurant-info {
   margin: var(--spacing-sm) 0;
 }

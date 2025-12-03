@@ -26,3 +26,4 @@ export type CardType = 'activity' | 'restaurant' | 'transport';
 export * from './card';
 export * from './day';
 export * from './trip';
+export * from './recommendation';
