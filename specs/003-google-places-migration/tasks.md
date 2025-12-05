@@ -17,9 +17,9 @@
 
 **目的**: 配置開發環境和 API 代理
 
-- [ ] T001 在 vite.config.ts 新增 `/api/google-places` 代理設定
-- [ ] T002 [P] 在 .env.local 新增 VITE_GOOGLE_PLACES_API_KEY 環境變數
-- [ ] T003 [P] 在 src/types/env.d.ts 新增環境變數型別定義（若不存在則建立）
+- [X] T001 在 vite.config.ts 新增 `/api/google-places` 代理設定
+- [X] T002 [P] 在 .env.local 新增 VITE_GOOGLE_PLACES_API_KEY 環境變數
+- [X] T003 [P] 在 src/types/env.d.ts 新增環境變數型別定義（若不存在則建立）
 
 ---
 

@@ -51,4 +51,13 @@ export default defineConfig({
       '@': resolve(__dirname, 'src'),
     },
   },
+  server: {
+    proxy: {
+      '/api/google-places': {
+        target: 'https://places.googleapis.com',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api\/google-places/, ''),
+      },
+    },
+  },
 });
