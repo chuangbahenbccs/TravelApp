@@ -29,7 +29,7 @@
 
 **⚠️ 關鍵**: 此階段完成前，不得開始任何使用者故事
 
-- [ ] T004 在 src/services/places/GooglePlacesProvider.ts 建立 GooglePlacesProvider 類別骨架
+- [X] T004 在 src/services/places/GooglePlacesProvider.ts 建立 GooglePlacesProvider 類別骨架
 - [ ] T005 在 src/services/places/GooglePlacesProvider.ts 實作 API 請求基礎設施（fetch wrapper、headers、錯誤處理）
 - [ ] T006 在 src/services/places/GooglePlacesProvider.ts 定義 Google API 回應型別介面
 - [ ] T007 在 src/services/places/index.ts 建立 Provider 索引檔，導出 createGooglePlacesProvider 工廠函式
